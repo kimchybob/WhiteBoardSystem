@@ -230,7 +230,9 @@ public class WhiteboardApp {
                         endpoint.on(getBoardData,(args2)->{
                                 String requestedBoardName = (String)args2[0];
                                 Whiteboard wb = whiteboards.get(requestedBoardName); // TODO: null
-                                endpoint.emit(boardData, wb.toString());
+                                if (wb != null){
+                                        endpoint.emit(boardData, wb.toString());
+                                }
                         }).on(listenBoard, (args2)->{
                                 String requestedBoardName = (String)args2[0];
                                 log.info("OnBoardListen "+ requestedBoardName);
@@ -263,7 +265,7 @@ public class WhiteboardApp {
                 
                 // to allow the initialization finish, so that the window title can update
                 try {
-                        Thread.sleep(200);
+                        Thread.sleep(300);
                 } catch (InterruptedException ex) {
 
                 }
@@ -280,7 +282,7 @@ public class WhiteboardApp {
                         log.severe("connection to whiteboard server interrupted");
                 }
                 
-		
+		          
 	}
         
         
@@ -289,10 +291,23 @@ public class WhiteboardApp {
                 String name = getBoardName(boardInfo);
                 long version = getBoardVersion(boardInfo);
                 String path = getBoardPaths(boardInfo);
-                pathCreatedLocally(new WhiteboardPath(path)); //TODO: null, version wrong
-//                if ()
-                
-                
+                // if the board is selected, update and draw
+                System.out.println("name "+ name);
+                System.out.println("selectedBoardName"+selectedBoard.getName());
+                if (name.equals(selectedBoard.getName())){
+                        pathCreatedLocally(new WhiteboardPath(path)); 
+                        drawSelectedWhiteboard(); 
+                // if the board is not selected, just update. version check??
+                }else{
+                        Whiteboard wb = whiteboards.get(name);
+                        if (wb != null){
+                                if(wb.addPath(new WhiteboardPath(path),wb.getVersion())){
+                                        log.info("Whiteboard updated with new path "+path);
+                                }else{
+                                        log.severe("Whiteboard version error");
+                                };
+                        }
+                }
         }
 	
         // peers establish connection with whiteboard server as soon as it starts
@@ -537,16 +552,15 @@ public class WhiteboardApp {
 	 */
 	public void pathCreatedLocally(WhiteboardPath currentPath) {
 		if(selectedBoard!=null) {
-                        
+//                        System.out.println("draw locally");
+//                        System.out.println("selected board get version "+selectedBoard.getVersion());
                         
 			if(!selectedBoard.addPath(currentPath,selectedBoard.getVersion())) {
                                 
 				// some other peer modified the board in between
 				drawSelectedWhiteboard(); // just redraw the screen without the path
 			} else {
-				// was accepted locally, so do remote stuff if needed
-                                System.out.println(selectedBoard.getVersion());
-                                System.out.println("version wrong");
+				// when we draw on the remote board, always emit the update to the host peer
                                 if (selectedBoard.isRemote()){
                                         String host = getIP(selectedBoard.getName());
                                         String port = Integer.toString(getPort(selectedBoard.getName())) ;
@@ -554,10 +568,7 @@ public class WhiteboardApp {
                                         Endpoint endpoint = peerEndpoints.get(IPandPort);
                                         System.out.println(selectedBoard.getName()+"%"+selectedBoard.getVersion()+"%"+currentPath);
                                         endpoint.emit(boardPathUpdate, selectedBoard.getName()+"%"+selectedBoard.getVersion()+"%"+currentPath);
-                                }else if(selectedBoard.isShared()){
-
                                 }
-
 			}
 
                         
@@ -611,7 +622,12 @@ public class WhiteboardApp {
 		drawSelectedWhiteboard();
 		log.info("selected board: "+selectedBoard.getName());
                 if (selectedBoard.isRemote()){
-                    this.getInitialBoardData(peerManager, selectedBoard.getName());
+                        this.getInitialBoardData(peerManager, selectedBoard.getName());
+                }else{
+                    if (selectedBoard.isShared()){
+                            System.out.println("shared board");
+                            drawSelectedWhiteboard(); 
+                    }
                 }
 	}
 	

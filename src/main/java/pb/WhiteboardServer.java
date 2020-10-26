@@ -177,15 +177,6 @@ public class WhiteboardServer {
                             }
                         }
                 });
-//                        .on(queryIndex, (eventArgs2)->{
-//        		String query = (String) eventArgs2[0];
-//        		log.info("Received query: "+query);
-//        		queryIndex(query,endpoint);
-//        	}).on(peerUpdate, (eventArgs2)->{
-//        		String peerport = (String) eventArgs2[0];
-//        		log.info("Received peer update: "+peerport);
-//        		peerUpdate(peerport);
-//        	});
         }).on(ServerManager.sessionStopped,(eventArgs)->{
         	Endpoint endpoint = (Endpoint)eventArgs[0];
         	log.info("Client session ended: "+endpoint.getOtherEndpointId());

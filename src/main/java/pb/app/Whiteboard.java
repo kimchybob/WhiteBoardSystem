@@ -125,7 +125,7 @@ public class Whiteboard {
 	 * @return true if the update was accepted, false if it was rejected
 	 */
 	public synchronized boolean addPath(WhiteboardPath newPath,long versionBeingUpdated) {
-                System.out.println(version);
+//                System.out.println("board version "+version);
 		if(version!=versionBeingUpdated) return false;
 		paths.add(newPath);
 		this.version++;
