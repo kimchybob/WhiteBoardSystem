@@ -226,11 +226,10 @@ public class WhiteboardApp {
                 
                 peerManager.on(PeerManager.peerStarted, (args) -> {
                         Endpoint endpoint = (Endpoint)args[0];
-                        System.out.println(System.identityHashCode(endpoint));
                         System.out.println("Connection from peer: "+endpoint.getOtherEndpointId());
                         endpoint.on(getBoardData,(args2)->{
                                 String requestedBoardName = (String)args2[0];
-                                Whiteboard wb = whiteboards.get(requestedBoardName);
+                                Whiteboard wb = whiteboards.get(requestedBoardName); // TODO: null
                                 endpoint.emit(boardData, wb.toString());
                         }).on(listenBoard, (args2)->{
                                 String requestedBoardName = (String)args2[0];
@@ -241,10 +240,11 @@ public class WhiteboardApp {
                                         this.boardListenedByPeer.put(requestedBoardName, new ArrayList<Endpoint>());
                                         this.boardListenedByPeer.get(requestedBoardName).add(endpoint);
                                 }
-                                for (Endpoint ep: this.boardListenedByPeer.get(requestedBoardName)){
-                                        System.out.println(System.identityHashCode(ep));
-                                }
-                                
+//                                for (Endpoint ep: this.boardListenedByPeer.get(requestedBoardName)){
+//                                        System.out.println(System.identityHashCode(ep));
+//                                }                                
+                        }).on(boardPathUpdate, (args2)->{
+                                onBoardPath((String)args2[0]);
                         });                  
                 }).on(PeerManager.peerStopped,(args)->{
                     
@@ -282,6 +282,18 @@ public class WhiteboardApp {
                 
 		
 	}
+        
+        
+        private void onBoardPath(String boardInfo){
+                System.out.println("Board path update " + boardInfo);
+                String name = getBoardName(boardInfo);
+                long version = getBoardVersion(boardInfo);
+                String path = getBoardPaths(boardInfo);
+                pathCreatedLocally(new WhiteboardPath(path)); //TODO: null, version wrong
+//                if ()
+                
+                
+        }
 	
         // peers establish connection with whiteboard server as soon as it starts
         public void connectWBserver(PeerManager peerManager, String peerport)
@@ -525,13 +537,33 @@ public class WhiteboardApp {
 	 */
 	public void pathCreatedLocally(WhiteboardPath currentPath) {
 		if(selectedBoard!=null) {
+                        
+                        
 			if(!selectedBoard.addPath(currentPath,selectedBoard.getVersion())) {
+                                
 				// some other peer modified the board in between
 				drawSelectedWhiteboard(); // just redraw the screen without the path
 			} else {
 				// was accepted locally, so do remote stuff if needed
-				
+                                System.out.println(selectedBoard.getVersion());
+                                System.out.println("version wrong");
+                                if (selectedBoard.isRemote()){
+                                        String host = getIP(selectedBoard.getName());
+                                        String port = Integer.toString(getPort(selectedBoard.getName())) ;
+                                        String IPandPort = host+":"+port;
+                                        Endpoint endpoint = peerEndpoints.get(IPandPort);
+                                        System.out.println(selectedBoard.getName()+"%"+selectedBoard.getVersion()+"%"+currentPath);
+                                        endpoint.emit(boardPathUpdate, selectedBoard.getName()+"%"+selectedBoard.getVersion()+"%"+currentPath);
+                                }else if(selectedBoard.isShared()){
+
+                                }
+
 			}
+
+                        
+
+                        
+                        
 		} else {
 			log.severe("path created without a selected board: "+currentPath);
 		}
