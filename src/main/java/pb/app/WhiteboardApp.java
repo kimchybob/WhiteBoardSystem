@@ -230,6 +230,7 @@ public class WhiteboardApp {
                         endpoint.on(getBoardData,(args2)->{
                                 String requestedBoardName = (String)args2[0];
                                 Whiteboard wb = whiteboards.get(requestedBoardName); // TODO: null
+                                System.out.println("white board "+wb+" got from whiteboards using key "+requestedBoardName);
                                 if (wb != null){
                                         endpoint.emit(boardData, wb.toString());
                                 }
@@ -325,8 +326,9 @@ public class WhiteboardApp {
                                 String sharingBoardName = (String) args2[0];
                                 if (!sharingBoard.equals("")) {
                                         Whiteboard wb = new Whiteboard(sharingBoardName,true);
-                                        this.addBoard(wb,false);
+                                        addBoard(wb,false);
                                         System.out.println("Received board "+ sharingBoardName + " from whiteboard server");
+                                        
                                 }
                         }).on(WhiteboardServer.unsharingBoard, (args2)->{
                                 String unsharingBoardName = (String) args2[0];
@@ -336,10 +338,18 @@ public class WhiteboardApp {
 		}).on(PeerManager.peerStopped, (args) -> {
 			System.out.println("Disconnected to the whiteboard server...");
                         log.info("connection to whiteboard server finishes"); 
-                        
+                        log.severe("connection to whiteboard server error");
+                        for (String peer:peerEndpoints.keySet()){
+                                peerEndpoints.get(peer).close();
+                        }
+                        peerEndpoints.clear();
 		}).on(PeerManager.peerError, (args) -> {
 			System.out.println("Lost connection to whiteboard server...");
                         log.severe("connection to whiteboard server error");
+                        for (String peer:peerEndpoints.keySet()){
+                                peerEndpoints.get(peer).close();
+                        }
+                        peerEndpoints.clear();
 		});
 
 		clientManager.start();
@@ -356,22 +366,30 @@ public class WhiteboardApp {
 	 */
         private void getInitialBoardData(PeerManager peerManager, String boardName){
             String [] boardNameInfo = boardName.split(":");
-            ClientManager clientManager;
             int peerPort = Integer.valueOf(boardNameInfo[1]);
             String peerHost = boardNameInfo[0];
             String IPandPort = boardNameInfo[0]+":"+boardNameInfo[1];
+            
+            
             try {
                 if (peerEndpoints.containsKey(IPandPort)){
+                        System.out.println("existing connection from peerendpoitns");
+                        System.out.println("IPandPort" + IPandPort);
+                        System.out.println("board to get" + boardName);
+                        System.out.println("whiteboard size "+whiteboards.size());
                         Endpoint endpoint = peerEndpoints.get(IPandPort);
                         endpoint.emit(getBoardData, boardName);
+                        
                 }else{
-                        clientManager = peerManager.connect(peerPort, peerHost);
+                        ClientManager clientManager = peerManager.connect(peerPort, peerHost);
                         clientManager.on(PeerManager.peerStarted, (args)->{
                                 Endpoint endpoint = (Endpoint)args[0];
                                 peerEndpoints.put(IPandPort, endpoint);
                                 System.out.println("Conected to peer "+endpoint.getOtherEndpointId()); 
                                 endpoint.on(boardData,(args2)->{      
                                         this.onBoardData(boardName,(String)args2[0]);
+                                        selectedBoard = whiteboards.get(boardName);
+                                        drawSelectedWhiteboard();
                                 });
                                 endpoint.emit(getBoardData, boardName);
                                 endpoint.emit(listenBoard, boardName); 
@@ -398,8 +416,14 @@ public class WhiteboardApp {
         private void onBoardData(String boardName, String args){
                 log.info("Onboard Data: "+ args);
                 String boardData = getBoardData(args);
-                selectedBoard.whiteboardFromString(boardName,boardData);  
-                drawSelectedWhiteboard();
+                Whiteboard wb = whiteboards.get(boardName);
+                if (wb != null){
+                    wb.whiteboardFromString(boardName,boardData);
+                }
+                whiteboards.put(boardName, wb); 
+//                selectedBoard.whiteboardFromString(boardName,boardData); 
+                System.out.println("key: "+boardName+"whiteboard "+whiteboards.get(boardName));
+                System.out.println("selected board "+selectedBoard);
         }
        
         
@@ -515,7 +539,10 @@ public class WhiteboardApp {
 	 */
 	public void addBoard(Whiteboard whiteboard,boolean select) {
 		synchronized(whiteboards) {
+                        System.out.println("added board name "+ whiteboard.getName());
 			whiteboards.put(whiteboard.getName(), whiteboard);
+                        
+                        
 		}
 		updateComboBox(select?whiteboard.getName():null);
 	}
@@ -619,15 +646,15 @@ public class WhiteboardApp {
 	 * The variable selectedBoard has been set.
 	 */
 	public void selectedABoard() {
-		drawSelectedWhiteboard();
+		
 		log.info("selected board: "+selectedBoard.getName());
                 if (selectedBoard.isRemote()){
+                        System.out.println("selectedboard name in selectedaboard"+ selectedBoard.getName());
                         this.getInitialBoardData(peerManager, selectedBoard.getName());
+                        System.out.println("selected board "+selectedBoard);
+                        
                 }else{
-                    if (selectedBoard.isShared()){
-                            System.out.println("shared board");
-                            drawSelectedWhiteboard(); 
-                    }
+                    drawSelectedWhiteboard();
                 }
 	}
 	
@@ -720,11 +747,13 @@ public class WhiteboardApp {
 					if(modifyingComboBox) return;
 					if(boardComboBox.getSelectedIndex()==-1) return;
 					String selectedBoardName=(String) boardComboBox.getSelectedItem();
+//                                        System.out.println("selected board name in the combobox "+selectedBoardName);
 					if(whiteboards.get(selectedBoardName)==null) {
 						log.severe("selected a board that does not exist: "+selectedBoardName);
 						return;
 					}
 					selectedBoard = whiteboards.get(selectedBoardName);
+                                        System.out.println("selected board after clicking on GUI "+selectedBoard);
 					// remote boards can't have their shared status modified
 					if(selectedBoard.isRemote()) {
 						sharedCheckbox.setEnabled(false);
