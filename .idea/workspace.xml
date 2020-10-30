@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e4e54285-557c-4edc-91f1-ecdd2858b296" name="Default Changelist" comment="when running multiple peers,setting different port number with command line argument is essential; this version only fixed drawing issue" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="kimchybob &lt;wxxu1@student.unimelb.edu.au&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jPO6Z9CmsnlJKLzzYRYYVI5BXL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="Application.WhiteboardServer">
+    <configuration name="Peer1" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="pb.WhiteboardPeer" />
+      <module name="pb3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WhiteboardServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pb.WhiteboardServer" />
+      <module name="pb3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="peer2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="pb.WhiteboardPeer" />
+      <module name="pb3" />
+      <option name="PROGRAM_PARAMETERS" value="-port 3102" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="peer3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="pb.WhiteboardPeer" />
+      <module name="pb3" />
+      <option name="PROGRAM_PARAMETERS" value="-port 3103" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.peer2" />
+      <item itemvalue="Application.peer3" />
+      <item itemvalue="Application.Peer1" />
+      <item itemvalue="Application.WhiteboardServer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.WhiteboardServer" />
+        <item itemvalue="Application.Peer1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e4e54285-557c-4edc-91f1-ecdd2858b296" name="Default Changelist" comment="" />
+      <created>1603702085436</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603702085436</updated>
+      <workItem from="1603702087442" duration="3414000" />
+      <workItem from="1603783185407" duration="58305000" />
+      <workItem from="1603982481687" duration="230000" />
+      <workItem from="1604021061415" duration="322000" />
+    </task>
+    <task id="LOCAL-00001" summary="when running multiple peers,setting different port number with command line argument is essential; this version only fixed drawing issue">
+      <created>1603974164889</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603974164889</updated>
+    </task>
+    <task id="LOCAL-00002" summary="when running multiple peers,setting different port number with command line argument is essential; this version only fixed drawing issue">
+      <created>1603974466477</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603974466477</updated>
+    </task>
+    <task id="LOCAL-00003" summary="when running multiple peers,setting different port number with command line argument is essential; this version only fixed drawing issue">
+      <created>1603974512020</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603974512020</updated>
+    </task>
+    <task id="LOCAL-00004" summary="when running multiple peers,setting different port number with command line argument is essential; this version only fixed drawing issue">
+      <created>1604021238319</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604021238319</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="when running multiple peers,setting different port number with command line argument is essential; this version is complete" />
+    <MESSAGE value="when running multiple peers,setting different port number with command line argument is essential; this version only fixed drawing issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="when running multiple peers,setting different port number with command line argument is essential; this version only fixed drawing issue" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603970466755">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1603970466755" />
+    <state x="457" y="233" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1603863963574">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="457" y="233" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1603863963574" />
+    <state x="457" y="247" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603863949906">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="457" y="247" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1603863949906" />
+    <state x="100" y="35" width="1240" height="758" key="DiffContextDialog" timestamp="1603974475204">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="100" y="35" width="1240" height="758" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1603974475204" />
+    <state x="100" y="57" width="1240" height="738" key="DiffContextDialog/0.23.1440.877@0.23.1440.877" timestamp="1603888860126" />
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/1440.92.1280.697/0.23.1440.877@0.23.1440.877" timestamp="1603784132608" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1603982711036">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603982711036" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1603978697538" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/1440.69.1280.720/0.0.1440.900@0.0.1440.900" timestamp="1603783130947" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1603982711034">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603982711034" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1603978697536" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center/1440.69.1280.720/0.0.1440.900@0.0.1440.900" timestamp="1603783130946" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1603982711033">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603982711033" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1603978697535" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left/1440.69.1280.720/0.0.1440.900@0.0.1440.900" timestamp="1603783130945" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1603982711035">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603982711035" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1603978697537" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/1440.69.1280.720/0.0.1440.900@0.0.1440.900" timestamp="1603783130947" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1603982117067">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603982117067" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1603905579185" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1603982117066">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1603982117066" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1603905579183" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1603982117065">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1603982117065" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1603905579182" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1603982117067">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1603982117067" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1603905579184" />
+    <state x="229" y="89" key="SettingsEditor" timestamp="1603892839078">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1603892839078" />
+    <state x="523" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604021333783">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="523" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1604021333783" />
+    <state x="523" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1440.69.1280.720/0.0.1440.900@0.0.1440.900" timestamp="1603783462224" />
+    <state x="270" y="186" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1603889202445">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="270" y="186" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1440.900@0.0.1440.900" timestamp="1603889202445" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pb/app/WhiteboardApp.java</url>
+          <line>346</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pb/app/WhiteboardApp.java</url>
+          <line>331</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pb/app/WhiteboardApp.java</url>
+          <line>392</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pb/app/WhiteboardApp.java</url>
+          <line>349</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pb/managers/IOThread.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/pb/app/WhiteboardApp.java</url>
+          <line>190</line>
+          <properties field="peerport" class="pb.app.WhiteboardApp" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
