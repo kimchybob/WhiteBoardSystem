@@ -95,6 +95,15 @@ public class PeerManager extends Manager {
 	public ServerManager getServerManager() {
 		return serverManager;
 	}
+
+	public boolean isClientManagersNull(){
+		if (clientManagers == null){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 	/**
 	 * Connect to either a server or another peer. The client manager

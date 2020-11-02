@@ -834,17 +834,13 @@ public class WhiteboardApp {
 	 */
 	public void guiShutdown() {
 		// do some final cleanup
-//		whiteboards.values().forEach((whiteboard)->{
-//			//is local
-//			if(!whiteboard.isRemote() && whiteboard.isShared()){
-//				WBServerEndpoint.emit(unshareBoard,whiteboard.getName());
-//			}
-//		});
 		HashSet<Whiteboard> existingBoards= new HashSet<>(whiteboards.values());
 		existingBoards.forEach((board)->{
 			deleteBoard(board.getName());
 		});
-		peerManager.shutdown();
+		if (!peerManager.isClientManagersNull()){
+			peerManager.shutdown();
+		}
 	}
 	
 	
