@@ -363,8 +363,6 @@ public class WhiteboardApp {
                         System.out.println("Connection to whiteboard server interrupted");
                         log.severe("connection to whiteboard server interrupted");
                 }
-                
-		          
 	}
         
 
@@ -515,6 +513,7 @@ public class WhiteboardApp {
                                 Endpoint endpoint = (Endpoint)args[0];
                                 System.out.println("There was error while communication with peer: "
                                                 +endpoint.getOtherEndpointId());
+                                endpoint.emit(boardError,args[0]);
                         });
                         clientManager.start();
                 }
@@ -847,16 +846,19 @@ public class WhiteboardApp {
 		existingBoards.forEach((board)->{
 			deleteBoard(board.getName());
 		});
-		peerManager.shutdown();
-		waitToFinish();
+//		peerManager.shutdown();
+//		waitToFinish();
 		for (String boardName:boardListenedByPeer.keySet()){
 				ArrayList<Endpoint> endpointList = boardListenedByPeer.get(boardName);
 				for(int i = 0; i < endpointList.size(); i++){
 						try{
 								Endpoint endpoint = endpointList.get(i);
-								SessionProtocol sessionProtocol = (SessionProtocol) endpoint.getProtocol("SessionProtocol");
-								if(sessionProtocol != null){
-									sessionProtocol.stopSession();
+//								SessionProtocol sessionProtocol = (SessionProtocol) endpoint.getProtocol("SessionProtocol");
+//								if(sessionProtocol != null){
+//									sessionProtocol.stopSession();
+//								}
+								if(endpoint != null){
+									endpoint.close();
 								}
 						}catch(Exception e){
 								System.out.println("error");
@@ -864,8 +866,8 @@ public class WhiteboardApp {
 
 				}
 		}
-//		peerManager.shutdown();
-//		waitToFinish();
+		peerManager.shutdown();
+		waitToFinish();
 		//System.exit(0);
                 
 	}
