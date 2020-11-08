@@ -678,6 +678,11 @@ public class WhiteboardApp {
 							endpoint.emit(boardDeleted,boardname);
 						}
 					}
+				}else{
+					Endpoint endpoint = peerEndpoints.get(boardname);
+					if (endpoint != null){
+						endpoint.emit(unlistenBoard,boardname);
+					}
 				}
 				whiteboards.remove(boardname);
 				if(whiteboard.isShared()){
@@ -842,24 +847,26 @@ public class WhiteboardApp {
 		existingBoards.forEach((board)->{
 			deleteBoard(board.getName());
 		});
-                for (String boardName:boardListenedByPeer.keySet()){
-                        ArrayList<Endpoint> endpointList = boardListenedByPeer.get(boardName);
-                        for(int i = 0; i < endpointList.size(); i++){
-                                try{
-                                        Endpoint endpoint = endpointList.get(i);
-                                        SessionProtocol sessionProtocol = (SessionProtocol) endpoint.getProtocol("SessionProtocol");
-                                        if(sessionProtocol != null){
-                                            sessionProtocol.stopSession();
-                                        }
-                                }catch(Exception e){
-                                        System.out.println("error");
-                                }
+		peerManager.shutdown();
+		waitToFinish();
+		for (String boardName:boardListenedByPeer.keySet()){
+				ArrayList<Endpoint> endpointList = boardListenedByPeer.get(boardName);
+				for(int i = 0; i < endpointList.size(); i++){
+						try{
+								Endpoint endpoint = endpointList.get(i);
+								SessionProtocol sessionProtocol = (SessionProtocol) endpoint.getProtocol("SessionProtocol");
+								if(sessionProtocol != null){
+									sessionProtocol.stopSession();
+								}
+						}catch(Exception e){
+								System.out.println("error");
+						}
 
-                        }
-                }
-                peerManager.shutdown();
-                waitToFinish();
-                //System.exit(0);
+				}
+		}
+//		peerManager.shutdown();
+//		waitToFinish();
+		//System.exit(0);
                 
 	}
 	
